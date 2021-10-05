@@ -54,7 +54,7 @@ tasks.withType(JavaCompile) {
 test {
     useJUnitPlatform()
     systemProperties System.getProperties().subMap(['driver.remote', 'remote.url', 'remote.browser', 'remote.browser.version', 'threads'])
-    if (System.getProperty("threads") != null) {
+    if (System.getProperty("threads")?.trim()) {
         systemProperties += [
                 'junit.jupiter.execution.parallel.enabled'                 : true,
                 'junit.jupiter.execution.parallel.mode.default'            : 'concurrent',
