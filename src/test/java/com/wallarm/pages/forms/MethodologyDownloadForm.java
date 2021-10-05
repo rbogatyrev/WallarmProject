@@ -2,6 +2,7 @@ package com.wallarm.pages.forms;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
@@ -16,6 +17,7 @@ public class MethodologyDownloadForm {
     private static final String EMAIL_INPUT = "input[name='email']";
     private static final String SUBMIT_BUTTON = "input[type='submit']";
 
+    @Step("Get message text from methodology download form")
     public String getFormText(){
        $(FRAME).shouldBe(visible);
         Selenide.switchTo().frame($(FRAME));
@@ -23,6 +25,7 @@ public class MethodologyDownloadForm {
 
     }
 
+    @Step("Set user name")
     public MethodologyDownloadForm setName(String name){
         $(FRAME).shouldBe(visible);
         Selenide.switchTo().frame($(FRAME));
@@ -30,6 +33,8 @@ public class MethodologyDownloadForm {
         Selenide.switchTo().defaultContent();
         return this;
     }
+
+    @Step("Set user position")
     public MethodologyDownloadForm setPosition(String name){
         $(FRAME).shouldBe(visible);
         Selenide.switchTo().frame($(FRAME));
@@ -38,6 +43,7 @@ public class MethodologyDownloadForm {
         return this;
     }
 
+    @Step("Set user email")
     public MethodologyDownloadForm setEmail(String name){
         $(FRAME).shouldBe(visible);
         Selenide.switchTo().frame($(FRAME));
@@ -45,6 +51,8 @@ public class MethodologyDownloadForm {
         Selenide.switchTo().defaultContent();
         return this;
     }
+
+    @Step("Click download")
     public MethodologyDownloadForm clickDownloadButton(){
         $(FRAME).shouldBe(visible);
         Selenide.switchTo().frame($(FRAME));

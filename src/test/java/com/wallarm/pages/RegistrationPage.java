@@ -1,5 +1,7 @@
 package com.wallarm.pages;
 
+import io.qameta.allure.Step;
+
 import static com.codeborne.selenide.Selenide.$;
 import static com.wallarm.enums.Urls.WALLARM_SIGNUP_PAGE;
 
@@ -25,21 +27,25 @@ public class RegistrationPage extends BasePage{
         return WALLARM_SIGNUP_PAGE.getValue();
     }
 
+    @Step("Set user name")
     public RegistrationPage setName(String name){
         $(NAME_INPUT).setValue(name);
         return this;
     }
 
+    @Step("Set user password")
     public RegistrationPage setPassword (String password){
         $(PASSWORD_INPUT).setValue(password);
         return this;
     }
 
+    @Step("Set user email")
     public RegistrationPage setEmail (String email){
         $(EMAIL_INPUT).setValue(email);
         return this;
     }
 
+    @Step("Click create account")
     public ActivationPage clickCreateAccountButton(){
         $(SIGN_UP_BUTTON).click();
         return activationPage;

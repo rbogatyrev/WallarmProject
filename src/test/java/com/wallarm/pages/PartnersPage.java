@@ -1,6 +1,7 @@
 package com.wallarm.pages;
 
 import com.wallarm.enums.Locals;
+import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
@@ -28,26 +29,31 @@ public class PartnersPage extends BasePage{
         return WALLARM_PARTNERS_PAGE.getValue();
     }
 
+    @Step("Click become partners")
     public PartnersPage clickBecomePartnersButton(){
         $(PARTNERS_BUTTON).click();
         return this;
     }
 
+    @Step("Set user first name")
     public PartnersPage setFirstName(String firstName){
         $(FIRST_NAME_INPUT).scrollIntoView(true).setValue(firstName);
         return this;
     }
 
+    @Step("Set user email")
     public PartnersPage setEmail (String email){
         $(EMAIL_INPUT).scrollIntoView(true).setValue(email);
         return this;
     }
 
+    @Step("Set user company")
     public PartnersPage setCompany (String email){
         $(COMPANY_INPUT).scrollIntoView(true).setValue(email);
         return this;
     }
 
+    @Step("Click send button")
     public PartnersPage clickSendButton(){
         $(SEND_BUTTON).click();
         return this;

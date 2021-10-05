@@ -18,7 +18,6 @@ public abstract class BasePage {
     /**
      * Check, that the page is Loaded
      */
-    @Step("Check, that the page is Loaded")
     public void assertPageIsLoaded() {
         String elementSelector = getMainPageElement();
         SelenideElement element = getSelectorType(elementSelector) == "xpath" ? $x(elementSelector) : $(elementSelector);
