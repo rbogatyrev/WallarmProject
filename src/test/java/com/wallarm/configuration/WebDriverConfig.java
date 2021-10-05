@@ -21,9 +21,4 @@ public interface WebDriverConfig extends Config {
     @Key("remote.chrome.version")
     String chromeVersion();
 
-    @Key("threads")
-    @DefaultValue("1")
-    String threadCount();
-
-
 }
