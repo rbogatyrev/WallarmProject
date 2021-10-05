@@ -16,7 +16,6 @@ import static java.lang.String.format;
 public abstract class BaseTest {
 
     protected Logger logger = Logger.getInstance();
-    private WebDriverConfig driverConfig = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
 
     @BeforeAll
     public static void config() {
@@ -31,13 +30,7 @@ public abstract class BaseTest {
 
     @AfterEach()
     public void tearDown(TestInfo testInfo) {
-        String sessionId = DriverHelper.getSessionId();
         logger.info(format("Test %s is finished", testInfo.getDisplayName()));
-
-        Selenide.closeWebDriver();
-        if (driverConfig.isRemote()){
-            CustomTestExecutionListener.getVideo(sessionId);
-        }
     }
 
 

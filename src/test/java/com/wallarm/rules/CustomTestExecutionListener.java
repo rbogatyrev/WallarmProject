@@ -2,12 +2,14 @@ package com.wallarm.rules;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
+import com.wallarm.configuration.WebDriverConfig;
 import com.wallarm.utils.DateFormat;
 import com.wallarm.utils.DriverHelper;
 import com.wallarm.utils.Logger;
 import io.qameta.allure.Attachment;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import org.aeonbits.owner.ConfigFactory;
 import org.apache.commons.io.FileUtils;
 import org.apache.hc.core5.http.HttpStatus;
 import org.junit.platform.engine.TestExecutionResult;
@@ -30,6 +32,7 @@ import static org.openqa.selenium.logging.LogType.BROWSER;
 
 public class CustomTestExecutionListener implements TestExecutionListener {
 
+    private WebDriverConfig driverConfig = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
 
     /**
      * Make screenshot and attach to Allure
@@ -108,11 +111,17 @@ public class CustomTestExecutionListener implements TestExecutionListener {
 
     @Override
     public void executionFinished(TestIdentifier testIdentifier, TestExecutionResult testExecutionResult) {
-
+        String sessionId = DriverHelper.getSessionId();
         if (testExecutionResult.getThrowable().isPresent()) {
             makeScreenshot(testIdentifier);
             saveConsoleLog(testIdentifier);
         }
+
+        Selenide.closeWebDriver();
+        if (driverConfig.isRemote()){
+            CustomTestExecutionListener.getVideo(sessionId);
+        }
+
     }
 
 }
