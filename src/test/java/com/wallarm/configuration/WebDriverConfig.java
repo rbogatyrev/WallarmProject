@@ -22,6 +22,7 @@ public interface WebDriverConfig extends Config {
     String chromeVersion();
 
     @Key("threads")
+    @DefaultValue("1")
     String threadCount();
 
 
