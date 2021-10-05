@@ -12,7 +12,7 @@ public interface WebDriverConfig extends Config {
     @Key("remote.url")
     String remoteUrl();
 
-    @DefaultValue("http://selenoid.autotests.cloud/video/")
+    @DefaultValue("https://selenoid.autotests.cloud/video/")
     @Key("video.urlpart")
     String videoUrlPart();
 
@@ -20,6 +20,9 @@ public interface WebDriverConfig extends Config {
     @DefaultValue("91.0")
     @Key("remote.chrome.version")
     String chromeVersion();
+
+    @Key("threads")
+    String threadCount();
 
 
 }
