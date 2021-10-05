@@ -2,12 +2,14 @@ package com.wallarm.rules;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
-import com.wallarm.configuration.WebDriverConfig;
-import com.wallarm.utils.*;
-import io.qameta.allure.Allure;
+import com.wallarm.utils.DateFormat;
+import com.wallarm.utils.DriverHelper;
+import com.wallarm.utils.Logger;
 import io.qameta.allure.Attachment;
-import org.aeonbits.owner.ConfigFactory;
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
 import org.apache.commons.io.FileUtils;
+import org.apache.hc.core5.http.HttpStatus;
 import org.junit.platform.engine.TestExecutionResult;
 import org.junit.platform.launcher.TestExecutionListener;
 import org.junit.platform.launcher.TestIdentifier;
@@ -15,12 +17,12 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.Calendar;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import static com.google.common.io.Files.toByteArray;
 import static java.lang.String.format;
@@ -28,7 +30,6 @@ import static org.openqa.selenium.logging.LogType.BROWSER;
 
 public class CustomTestExecutionListener implements TestExecutionListener {
 
-    private WebDriverConfig driverConfig = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
 
     /**
      * Make screenshot and attach to Allure
@@ -75,38 +76,42 @@ public class CustomTestExecutionListener implements TestExecutionListener {
         return null;
     }
 
-    public static void addVideo(String sessionId) {
-        URL videoUrl = DriverHelper.getVideoUrl(sessionId);
-        if (videoUrl != null) {
-            InputStream videoInputStream = null;
-            SimpleWait.waitSec(1);
 
-            for (int i = 0; i < 10; i++) {
-                try {
-                    videoInputStream = videoUrl.openStream();
-                    break;
-                } catch (FileNotFoundException e) {
-                    SimpleWait.waitSec(1000);
-                } catch (IOException e) {
-                    Logger.getInstance().warn(format("[ALLURE VIDEO ATTACHMENT ERROR] Cant attach allure video, {}", videoUrl));
-                    e.printStackTrace();
-                }
+    private static byte[] fetchWithRetry(String sessionId) throws TimeoutException {
+        URL videoUrl = DriverHelper.getVideoUrl(sessionId);
+        Logger.getInstance().debug("Downloading: " + videoUrl);
+        for (int i = 0; i < 10; i++) {
+            Response response = RestAssured.get(videoUrl);
+            if (response.getStatusCode() == HttpStatus.SC_OK) {
+                return response.asByteArray();
             }
-            Allure.addAttachment("Video", "video/mp4", videoInputStream, "mp4");
+            Logger.getInstance().debug("Retrying download: " + videoUrl);
+
+            try {
+                TimeUnit.SECONDS.sleep(2);
+            } catch (InterruptedException e) {
+                throw new IllegalStateException(e);
+            }
+        }
+        throw new TimeoutException();
+    }
+
+    @Attachment(value = "Video", type = "video/mp4")
+    public static byte[] getVideo(String sessionId) {
+        try {
+            return fetchWithRetry(sessionId);
+        } catch (TimeoutException e) {
+            Logger.getInstance().error("Failed fetching URL");
+            return null;
         }
     }
 
-
     @Override
     public void executionFinished(TestIdentifier testIdentifier, TestExecutionResult testExecutionResult) {
-        String sessionId = DriverHelper.getSessionId();
+
         if (testExecutionResult.getThrowable().isPresent()) {
             makeScreenshot(testIdentifier);
             saveConsoleLog(testIdentifier);
-        }
-          Selenide.closeWebDriver();
-        if (driverConfig.isRemote()){
-            CustomTestExecutionListener.addVideo(sessionId);
         }
     }
 

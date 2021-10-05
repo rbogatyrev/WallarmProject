@@ -1,8 +1,11 @@
 package com.wallarm.tests;
 
 import com.codeborne.selenide.Selenide;
+import com.wallarm.configuration.WebDriverConfig;
+import com.wallarm.rules.CustomTestExecutionListener;
 import com.wallarm.utils.DriverHelper;
 import com.wallarm.utils.Logger;
+import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,6 +16,7 @@ import static java.lang.String.format;
 public abstract class BaseTest {
 
     protected Logger logger = Logger.getInstance();
+    private WebDriverConfig driverConfig = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
 
     @BeforeAll
     public static void config() {
@@ -27,7 +31,13 @@ public abstract class BaseTest {
 
     @AfterEach()
     public void tearDown(TestInfo testInfo) {
+        String sessionId = DriverHelper.getSessionId();
         logger.info(format("Test %s is finished", testInfo.getDisplayName()));
+
+        Selenide.closeWebDriver();
+        if (driverConfig.isRemote()){
+            CustomTestExecutionListener.getVideo(sessionId);
+        }
     }
 
 
