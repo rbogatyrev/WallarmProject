@@ -52,6 +52,7 @@ tasks.withType(JavaCompile) {
 }
 
 test {
+    test.ignoreFailures(true)
     useJUnitPlatform()
     systemProperties System.getProperties().subMap(['driver.remote', 'remote.url', 'remote.browser', 'remote.browser.version', 'threads'])
     if (System.getProperty("threads")?.trim()) {
