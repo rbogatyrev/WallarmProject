@@ -82,13 +82,12 @@ public class CustomTestExecutionListener implements TestExecutionListener {
 
     private static byte[] fetchWithRetry(String sessionId) throws TimeoutException {
         URL videoUrl = DriverHelper.getVideoUrl(sessionId);
-        Logger.getInstance().debug("Downloading: " + videoUrl);
+        Logger.getInstance().info("Downloading: " + videoUrl);
         for (int i = 0; i < 10; i++) {
             Response response = RestAssured.get(videoUrl);
             if (response.getStatusCode() == HttpStatus.SC_OK) {
                 return response.asByteArray();
             }
-            Logger.getInstance().debug("Retrying download: " + videoUrl);
 
             try {
                 TimeUnit.SECONDS.sleep(2);

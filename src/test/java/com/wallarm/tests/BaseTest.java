@@ -1,11 +1,8 @@
 package com.wallarm.tests;
 
 import com.codeborne.selenide.Selenide;
-import com.wallarm.configuration.WebDriverConfig;
-import com.wallarm.rules.CustomTestExecutionListener;
 import com.wallarm.utils.DriverHelper;
 import com.wallarm.utils.Logger;
-import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
