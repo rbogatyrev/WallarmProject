@@ -1,6 +1,6 @@
 <div class="row" align="right">
-  <a href="/README.md"><img src="images/RU.png" title ="Изменить язык на русский"></a>
- <a href="/README_EN.md"><img src="images/EN.png" title ="Switch language to English"></a>
+  <a href="/README.md"><img src="images/RU.png" title ="Перейти на страницу с русской версией"></a>
+ <a href="/README_EN.md"><img src="images/EN.png" title ="Go to English version"></a>
 </div>
 
 # <p align="center"> <img src="images/Wallarm.png" width="100" height="70">  Автотесты для сайта [платформы по защите веб-приложений и API Валарм](https://www.wallarm.ru/) </p>
