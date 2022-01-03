@@ -15,12 +15,12 @@ ___
 
 1. New Wallarm user registration and navigating to personal account from confirmation letter
 2. Sending support request from Wallarm website
-3. Проверка получения сообщения об отправке методологии на указанный емейл после ее скачивания "Услуги"
+3. Checking that 'Methodology is sent to an email' message appeared after it was downloaded
 4. Sending become Wallarm partner request
 5. Navigate to Wallarm documentation page from website
 6. **(Parameterized)** Go to success case page
 7. **(Parameterized)** Checking "Infographycs has been sent to an email" message is displayed when download an Infographycs 
-* Parameterized - a parameterized test for executing the same scenario using different set of entries 
+* Parameterized - a test is being executed multiple times using different set of entries 
 
 ___
 
