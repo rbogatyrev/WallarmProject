@@ -1,3 +1,8 @@
+<div class="row" align="right">
+  <a href="/README.md"><img src="images/RU.png" title ="Switch language to Russian"></a>
+ <a href="/README_EN.md"><img src="images/EN.png" title ="Switch language to English"></a>
+</div>
+
 # <p align="center"> <img src="images/Wallarm.png" width="100" height="70">  Autotests for [Wallarm: Web application and API protection platform](https://www.wallarm.ru/) website</p>
 ___
 ##  <p align="center"> Technologies and tools used </p>
@@ -8,14 +13,14 @@ ___
 ___
 ## The following test cases have been implemented:
 
-1. New Wallarm user registration с переходом в ЛК из письма-подтверждения
+1. New Wallarm user registration and navigating to personal account from confirmation letter
 2. Sending support request from Wallarm website
 3. Проверка получения сообщения об отправке методологии на указанный емейл после ее скачивания "Услуги"
 4. Sending become Wallarm partner request
-5. Go to Wallarm documentation page from website
+5. Navigate to Wallarm documentation page from website
 6. **(Parameterized)** Go to success case page
 7. **(Parameterized)** Checking "Infographycs has been sent to an email" message is displayed when download an Infographycs 
-* Parameterized - a parameterized test to execute the same scenario using different set of entries 
+* Parameterized - a parameterized test for executing the same scenario using different set of entries 
 
 ___
 
@@ -29,19 +34,19 @@ To start the build you need to specify the following parameters:
 ![RunParameters](images/JenkinsBuildStart.jpg)
 * **THREAD_NUMBER** - Specifies the number of concurrent running threads. Leave empty for running with a single thread
 * **CHROME_VERSION** - Chrome version for Selenoid environment
-* **REMOTE_DRIVER_URL** - Selenoid host address
+* **REMOTE_DRIVER_URL** - Host address for Selenoid
 
 Allure report will be generated automatically after build completion  
 После завершения выполнения сборки будет сформирован Allure-отчет, при переходе в который отобразится результат выполнения всех тестовых сценариев.
-![BuildFinished](images/JenkinsBuildFinished.jpg)
+![BuildFinished](images/JenkinsBuildFinishedEN.jpg)
 
-Для получения более детальной информации необходимо нажать на интересующий тестовый сценарий. В появившейся вкладке отобразятся шаги выполнения теста и также будет прикреплено видео с его прохождением, а в случае если тест завершился падением, то дополнительно будет прикреплен скриншот и лог из консоли браузера.
+For more detailed information on a test, click on its name in the list. In the opened tab you can find a list of the test's execution steps and the video attachment of its whole run at the bottom. If the test marked as failed, a screenshot of its failure and browser console logs will also be attached.
 
 ![TestSuccess](images/AllureResult.png)
 ![TestFailed](images/AllureFailResult.png)
 
 ___
-## Telegram-оповещения
-После завершения выполнения сборки будет отправлено оповещение в предварительно настроенный telegram-канал с результатами прохождения тестов
+## Telegram notifications
+A telegram notification with test execution results will be sent in a pre-configured channel after build completion
 
-![TelegramBot](images/TelegramNot.jpg)
+![TelegramBot](images/TelegramNotEN.jpg)
