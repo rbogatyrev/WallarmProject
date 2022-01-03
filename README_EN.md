@@ -1,6 +1,6 @@
 <div class="row" align="right">
-  <a href="/README.md"><img src="images/RU.png" title ="Switch language to Russian"></a>
- <a href="/README_EN.md"><img src="images/EN.png" title ="Switch language to English"></a>
+  <a href="/README.md"><img src="images/RU.png" title ="Go to Russian version"></a>
+ <a href="/README_EN.md"><img src="images/EN.png" title ="Go to English version"></a>
 </div>
 
 # <p align="center"> <img src="images/Wallarm.png" width="100" height="70">  Autotests for [Wallarm: Web application and API protection platform](https://www.wallarm.ru/) website</p>
@@ -36,8 +36,7 @@ To start the build you need to specify the following parameters:
 * **CHROME_VERSION** - Chrome version for Selenoid environment
 * **REMOTE_DRIVER_URL** - Host address for Selenoid
 
-Allure report will be generated automatically after build completion  
-После завершения выполнения сборки будет сформирован Allure-отчет, при переходе в который отобразится результат выполнения всех тестовых сценариев.
+Allure report with test execution results will be generated automatically after build completion  
 ![BuildFinished](images/JenkinsBuildFinishedEN.jpg)
 
 For more detailed information on a test, click on its name in the list. In the opened tab you can find a list of the test's execution steps and the video attachment of its whole run at the bottom. If the test marked as failed, a screenshot of its failure and browser console logs will also be attached.
