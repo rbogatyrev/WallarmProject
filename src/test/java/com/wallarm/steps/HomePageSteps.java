@@ -28,9 +28,16 @@ public class HomePageSteps {
     }
 
     @Step("Go to Resources Page")
-    public void goToResourcesPage(){
+    public void goToSuccessCasesPage(){
         landingPage.getTopbar().
-                goToResourcesPage()
+                goToSuccessCasesPage()
+                .assertPageIsLoaded();
+    }
+
+    @Step("Go to Infographics tab")
+    public void goToInfographicsTab(){
+        landingPage.getTopbar().
+                goToInfographicsTab()
                 .assertPageIsLoaded();
     }
 

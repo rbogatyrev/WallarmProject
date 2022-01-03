@@ -5,8 +5,8 @@ import com.wallarm.enums.Infographics;
 import com.wallarm.enums.Locals;
 import com.wallarm.enums.SuccessCase;
 import com.wallarm.pages.ResourcesPage;
+import com.wallarm.pages.SuccessCasesPage;
 import io.qameta.allure.Step;
-import org.assertj.core.api.AssertionsForClassTypes;
 import org.jetbrains.annotations.NotNull;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
@@ -14,11 +14,11 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 public class ResourcesSteps {
 
     private ResourcesPage resourcesPage = new ResourcesPage();
+    private SuccessCasesPage successCasesPage = new SuccessCasesPage();
 
-    @Step("Go to success case tab")
+    @Step("Go to success case from resource page")
     public void goToSuccessCase(SuccessCase successCase){
-        resourcesPage.goToSuccessCasesTab()
-                .clickReadMoreButton(successCase);
+        successCasesPage.clickReadMoreButton(successCase);
     }
 
     @Step("Assert that the success case title has a specific text")

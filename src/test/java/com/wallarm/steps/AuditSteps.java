@@ -2,6 +2,7 @@ package com.wallarm.steps;
 
 import com.wallarm.entities.User;
 import com.wallarm.pages.AuditPage;
+import com.wallarm.pages.forms.MethodologyDownloadForm;
 import io.qameta.allure.Step;
 import org.jetbrains.annotations.NotNull;
 
@@ -11,10 +12,11 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 public class AuditSteps {
 
     private AuditPage auditPage = new AuditPage();
+    private MethodologyDownloadForm methodologyDownloadForm = new MethodologyDownloadForm();
 
     @Step("Download Web Api Testing Methodology")
     public void downloadWebApiTestingMethodology(@NotNull User user){
-        auditPage.clickWebApiMethodologyButton()
+        methodologyDownloadForm
                 .setEmail(user.getEmail())
                 .setPosition(user.getPosition())
                 .setName(user.getFirstName())
