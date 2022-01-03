@@ -1,3 +1,8 @@
+<div class="row" align="right">
+  <a href="/README.md"><img src="images/RU.png" title ="Switch to Russian"></a>
+ <a href="/README_EN.md"><img src="images/EN.png" title ="Switch to English"></a>
+</div>
+
 # <p align="center"> <img src="images/Wallarm.png" width="100" height="70">  Автотесты для сайта [платформы по защите веб-приложений и API Валарм](https://www.wallarm.ru/) </p>
 ___
 ##  <p align="center"> Используемые технологии и инструменты </p>
