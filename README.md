@@ -1,5 +1,5 @@
 <div class="row" align="right">
-  <a href="/README.md"><img src="images/RU.png" title ="Switch to Russian"></a>
+  <a href="/README.md"><img src="images/RU.png" title ="Изменить язык на русский"></a>
  <a href="/README_EN.md"><img src="images/EN.png" title ="Switch to English"></a>
 </div>
 
