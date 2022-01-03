@@ -1,6 +1,6 @@
 <div class="row" align="right">
-  <a href="/README.md"><img src="images/RU.png" title ="Go to Russian version"></a>
- <a href="/README_EN.md"><img src="images/EN.png" title ="Go to English version"></a>
+  <a href="/README.md"><img src="images/RU.png" title ="Go to Russian README version"></a>
+ <a href="/README_EN.md"><img src="images/EN.png" title ="Go to English README version"></a>
 </div>
 
 # <p align="center"> <img src="images/Wallarm.png" width="100" height="70">  Autotests for [Wallarm: Web application and API protection platform](https://www.wallarm.ru/) website</p>
