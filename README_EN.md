@@ -46,6 +46,6 @@ For more detailed information on a test, click on its name in the list. In the o
 
 ___
 ## Telegram notifications
-A telegram notification with test execution results will be sent in a pre-configured channel after build completion
+A notification with test execution results will be sent in a pre-configured telegram channel after build completion
 
 ![TelegramBot](images/TelegramNotEN.jpg)
