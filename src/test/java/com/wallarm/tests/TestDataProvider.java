@@ -20,8 +20,8 @@ public class TestDataProvider {
     }
 
     static Stream<Infographics> getInfographicsData() {
-        Infographics firstInfo = Infographics.RUSSIAN_COMPANIES_CYBER_RISKS;
-        Infographics secondInfo = Infographics.FINTECH_COMPANIES_INFOSECURITY;
+        Infographics firstInfo = Infographics.WAF_AND_API_PROTECTION;
+        Infographics secondInfo = Infographics.WALLARM_AI_ENGINE;
 
         return Stream.of(firstInfo, secondInfo);
     }
