@@ -8,7 +8,7 @@ public interface UserConfig extends Config {
     @Key("mailinator.template")
     String mailinatorTemplate();
 
-    @DefaultValue("wal%s@yandex2.ru")
+    @DefaultValue("wal%s@ya2.ru")
     @Key("yandex.template")
     String yandexTemplate();
 

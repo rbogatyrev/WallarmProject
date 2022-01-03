@@ -14,7 +14,7 @@ public class ResourcesPage extends BasePage{
     private static final String TRY_FOR_FREE_BUTTON = "[data-w-id='79d46dd5-77c9-4ba1-5e04-dc2e2222fb6f'] a[href*='signup']";
     private static final String REQUEST_DEMO_BUTTON = "[data-w-id='79d46dd5-77c9-4ba1-5e04-dc2e2222fb6f'] a[href='/request-demo']";
     private static final String TAB_BUTTON = ".tabs-menu.w-tab-menu a[data-w-tab='%s']";
-    private static final String INFOGRAPHICS_DOWNLOAD_BUTTON = "div[role='listitem'] a[href*='%s'] div[class*='text-block']";
+    private static final String INFOGRAPHICS_DOWNLOAD_BUTTON = "[data-w-tab='infographics'] div[role='listitem'] a[href*='%s'] div[class*='text-block']";
 
     private SuccessCasesPage successCasesPage = new SuccessCasesPage();
     private InfographicsDownloadForm infographicsDownloadForm = new InfographicsDownloadForm();

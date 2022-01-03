@@ -92,7 +92,7 @@ public class LandingTests extends BaseTest {
     public void testSuccessCaseTitle(SuccessCase successCase) {
 
         navigationSteps.openHomePage();
-        landingSteps.goToResourcesPage();
+        landingSteps.goToSuccessCasesPage();
         resourcesSteps.goToSuccessCase(successCase);
         resourcesSteps.assertSuccessCaseHasText(successCase.getHeaderMessage());
 
@@ -104,7 +104,7 @@ public class LandingTests extends BaseTest {
         User user = UserGenerator.generateRandomUserProfileWithYandexMail();
 
         navigationSteps.openHomePage();
-        landingSteps.goToResourcesPage();
+        landingSteps.goToInfographicsTab();
         resourcesSteps.downloadInfographics(infographics, user);
         resourcesSteps.assertInfographicsDownloadMessageIsDisplayed();
     }
