@@ -1,0 +1,867 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Payroll Docs",
+    "version": "v1"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/credit_entries": {
+      "put": {
+        "tags": [
+          "Credit Entry Service"
+        ],
+        "summary": "Credit entries",
+        "description": "Create credit entry",
+        "operationId": "update",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "example": "jwt-token",
+            "schema": {
+              "type": "object",
+              "format": "json"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreditEntryDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Resource created successfully",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Input validation failures",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Credit Entry Service"
+        ],
+        "summary": "Credit entries",
+        "description": "Rollback credit entries",
+        "operationId": "delete",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "example": "jwt-token",
+            "schema": {
+              "type": "object",
+              "format": "json"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreditEntryRollbackDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Resource rolled back successfully",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Input validation failures",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/loadPayDayCompany": {
+      "post": {
+        "tags": [
+          "Payroll Service"
+        ],
+        "summary": "Save payroll data ",
+        "description": "Load data to ledger",
+        "operationId": "savePayDay",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "example": "jwt-token",
+            "schema": {
+              "type": "object",
+              "format": "json"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PayCompanyDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Resource created successfully",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Input validation failures",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/deleteCalendar": {
+      "post": {
+        "tags": [
+          "Payroll Service"
+        ],
+        "summary": "Delete payroll calendar",
+        "description": "Delete data",
+        "operationId": "deletePayrollCalendar",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "example": "jwt-token",
+            "schema": {
+              "type": "object",
+              "format": "json"
+            }
+          },
+          {
+            "name": "coNum",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "pcaNum",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Resource deleted successfully",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actual_files": {
+      "get": {
+        "tags": [
+          "Actual file Service"
+        ],
+        "summary": "Payroll actual files list",
+        "description": "Retrieval of Payroll Actual list",
+        "operationId": "actualFiles",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "example": "jwt-token",
+            "schema": {
+              "type": "object",
+              "format": "json"
+            }
+          },
+          {
+            "name": "co_num",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Resource returned successfully",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ActualFileResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Actual file Service"
+        ],
+        "summary": "Save actual file ",
+        "description": "Load actual file to ledger",
+        "operationId": "loadActualFile",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "example": "jwt-token",
+            "schema": {
+              "type": "object",
+              "format": "json"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActualFileDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Resource created successfully",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Input validation failures",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/payday_summaries": {
+      "get": {
+        "tags": [
+          "Payroll Service"
+        ],
+        "summary": "Payroll Summary Info",
+        "description": "Retrieves ledger from company and member",
+        "operationId": "getPayDaySummary",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "example": "jwt-token",
+            "schema": {
+              "type": "object",
+              "format": "JSON"
+            }
+          },
+          {
+            "name": "coNum",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "mmNum",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Resource returned successfully",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PayDaySummaryResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/credit_histories": {
+      "get": {
+        "tags": [
+          "Credit Service"
+        ],
+        "summary": "Credit history",
+        "description": "Credit history by item code",
+        "operationId": "index",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "example": "jwt-token",
+            "schema": {
+              "type": "object",
+              "format": "json"
+            }
+          },
+          {
+            "name": "companyNumber",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "memberNumber",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "itemCode",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Resource returned successfully",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CreditHistoryResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CreditEntryDto": {
+        "type": "object",
+        "properties": {
+          "co_num": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "mm_num": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "itm_num": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "mel_num": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "ppa_num": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "amount": {
+            "type": "number"
+          },
+          "comment": {
+            "type": "string"
+          }
+        }
+      },
+      "Response": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "DebitEntryDto": {
+        "type": "object",
+        "properties": {
+          "deAmount": {
+            "type": "number"
+          },
+          "deRequestedAmount": {
+            "type": "number"
+          },
+          "deCode": {
+            "type": "string"
+          },
+          "deItmNum": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "deMelNum": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "dePpaNumOccured": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "dePpaNumApplied": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "deCreateTs": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deEahNum": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "deMode": {
+            "type": "string"
+          }
+        }
+      },
+      "ElectionDimDto": {
+        "type": "object",
+        "properties": {
+          "edPlNum": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "edPcNum": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "edPrNum": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "edGrNum": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "edCoverageAmount": {
+            "type": "number"
+          }
+        }
+      },
+      "MemberElectionDto": {
+        "type": "object",
+        "properties": {
+          "puNum": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "effStartDt": {
+            "type": "string"
+          },
+          "effEndDt": {
+            "type": "string"
+          },
+          "electionDim": {
+            "$ref": "#/components/schemas/ElectionDimDto"
+          },
+          "debitEntries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DebitEntryDto"
+            }
+          },
+          "retros": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RetroDto"
+            }
+          }
+        }
+      },
+      "PayCompanyDto": {
+        "type": "object",
+        "properties": {
+          "coNum": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "profileNum": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "periodStart": {
+            "type": "string"
+          },
+          "periodEnd": {
+            "type": "string"
+          },
+          "periodRun": {
+            "type": "string"
+          },
+          "periodOrdinal": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "pcaNum": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "payMemberCompanies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PayMemberCompanyDto"
+            }
+          },
+          "electionDims": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ElectionDimDto"
+            }
+          },
+          "coAffid": {
+            "type": "string"
+          },
+          "prfId": {
+            "type": "string"
+          }
+        }
+      },
+      "PayMemberCompanyDto": {
+        "type": "object",
+        "properties": {
+          "memberElections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MemberElectionDto"
+            }
+          },
+          "pmcMmNum": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "pmcEmployeeId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "RetroDto": {
+        "type": "object",
+        "properties": {
+          "reOrdinal": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "reAmount": {
+            "type": "number"
+          }
+        }
+      },
+      "ActualFileDto": {
+        "type": "object",
+        "properties": {
+          "bucket": {
+            "type": "string"
+          },
+          "fileName": {
+            "type": "string"
+          }
+        }
+      },
+      "PayDaySummaryResponse": {
+        "type": "object",
+        "properties": {
+          "coNum": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "pmcMmNum": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "edPlNum": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "edPcNum": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "edPrNum": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "edGrNum": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "edCoverageAmount": {
+            "type": "number"
+          },
+          "melEffStartDt": {
+            "type": "string"
+          },
+          "melEffEndDt": {
+            "type": "string"
+          },
+          "mode": {
+            "type": "string"
+          },
+          "baseAmount": {
+            "type": "number"
+          },
+          "requestedAmount": {
+            "type": "number"
+          },
+          "creditAmount": {
+            "type": "number"
+          },
+          "itemCode": {
+            "type": "string"
+          },
+          "pypPrfNum": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "ppaNum": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "ppaOrdinal": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "ppaOrdinalApplied": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "perdNum": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "perdStartDt": {
+            "type": "string"
+          },
+          "perdEndDt": {
+            "type": "string"
+          },
+          "itemNum": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "melNum": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "retroCalculated": {
+            "type": "number"
+          },
+          "retroApplied": {
+            "type": "number"
+          }
+        }
+      },
+      "CreditHistoryResponse": {
+        "type": "object",
+        "properties": {
+          "user_num": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "type": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number"
+          },
+          "comment": {
+            "type": "string"
+          },
+          "processed_at": {
+            "type": "string"
+          }
+        }
+      },
+      "ActualFileResponse": {
+        "type": "object",
+        "properties": {
+          "user_num": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "type": {
+            "type": "string"
+          },
+          "filename": {
+            "type": "string"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "processed_at": {
+            "type": "string"
+          },
+          "number_of_records": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "eah_num": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "CreditEntryRollbackDto": {
+        "type": "object",
+        "properties": {
+          "co_num": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "mm_num": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "eah_num": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      }
+    }
+  }
+}
